@@ -250,3 +250,32 @@ int main(){
         cout << it -> first <<  " " << it -> second << endl;
     }
 }
+
+
+// substr
+#include <iostream>
+#include <unordered_set>
+
+using namespace std;
+
+int main() {
+    string str = "abcabcbb"; // You can change the input string as needed
+    int n = str.length();
+    int maxLength = 0, i = 0, j = 0;
+    unordered_set<char> charSet;
+
+    while (i < n && j < n) {
+        if (charSet.find(str[j]) == charSet.end()) {
+            // If the character is not in the set, add it and update maxLength
+            charSet.insert(str[j++]);
+            maxLength = max(maxLength, j - i);
+        } else {
+            // If the character is in the set, remove the first character
+            charSet.erase(str[i++]);
+        }
+    }
+
+    cout << "Length " << maxLength << endl;
+
+    return 0;
+}
