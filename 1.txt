@@ -279,3 +279,74 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <iostream>
+using namespace std;
+
+void subArraySum(int arr[], int n, int sum) {
+    for (int start = 0; start < n; start++) {
+        int currentSum = arr[start];
+
+        if (currentSum == sum) {
+            cout << "Sum found at index " << start << endl;
+            return;
+        } else {
+            for (int end = start + 1; end < n; end++) {
+                currentSum += arr[end];
+
+                if (currentSum == sum) {
+                    cout << "Sum found between indexes " << start << " and " << end << endl;
+                    return;
+                }
+            }
+        }
+    }
+
+    cout << "No subarray found" << endl;
+}
+
+int main() {
+    int arr[] = {15, 2, 4, 8, 9, 5, 10, 23};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int sum = 23;
+
+    subArraySum(arr, n, sum);
+
+    return 0;
+}
+
+// missing num in array
+#include <iostream>
+using namespace std;
+
+void findMissing(int arr[], int N) {
+    int temp[N + 1];
+    for (int i = 0; i <= N; i++) {
+        temp[i] = 0;
+    }
+
+    for (int i = 0; i < N; i++) {
+        temp[arr[i] - 1] = 1;
+    }
+
+    int ans;
+    for (int i = 0; i <= N; i++) {
+        if (temp[i] == 0) {
+            ans = i + 1;
+            break;
+        }
+    }
+
+    cout << ans;
+}
+
+int main() {
+    int arr[] = {1, 3, 7, 5, 6, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    findMissing(arr, n);
+
+    return 0;
+}
+
